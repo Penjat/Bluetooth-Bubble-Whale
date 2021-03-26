@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
+	var controller: BubbleWhaleRemoteViewController?
 
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: windowScene)
-		let nav = UINavigationController(rootViewController: BubbleWhaleRemoteViewController())
+		controller = BubbleWhaleRemoteViewController()
+		let nav = UINavigationController(rootViewController: controller!)
 		window?.rootViewController = nav
 		window?.makeKeyAndVisible()
 	}
@@ -51,6 +53,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// to restore the scene back to its current state.
 	}
 
+	func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+		for context in URLContexts {
+			if let host = context.url.host {
+				if host == "on" {
+					controller?.pressedOn()
+				}
 
+				if host == "off" {
+					controller?.pressedOff()
+				}
+			}
+			print("url: \(context.url.absoluteURL)")
+			print("scheme: \(context.url.scheme)")
+			print("host: \(context.url.host)")
+			print("path: \(context.url.path)")
+			print("components: \(context.url.pathComponents)")
+		  }
+	}
 }
 

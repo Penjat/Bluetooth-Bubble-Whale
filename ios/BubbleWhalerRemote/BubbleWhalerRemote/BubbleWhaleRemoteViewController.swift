@@ -65,13 +65,13 @@ class BubbleWhaleRemoteViewController: UIViewController {
 	}
 
 	@objc
-	func pressedOn() {
+	public func pressedOn() {
 		let data = "o".data(using: .utf8)!
 		bluetoothSerial.sendDataToDevice(data)
 	}
 
 	@objc
-	func pressedOff() {
+	public func pressedOff() {
 		let data = "f".data(using: .utf8)!
 		bluetoothSerial.sendDataToDevice(data)
 	}
