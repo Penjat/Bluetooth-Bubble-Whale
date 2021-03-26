@@ -6,18 +6,28 @@ class BubbleWhaleRemoteViewController: UIViewController {
 	var bluetoothSerial: BluetoothSerial!
 	var bubbleWhalePeripheral: CBPeripheral!
 	var myChar: CBCharacteristic?
+
 	lazy var mainStack: UIStackView = {
 		let stack = UIStackView()
 		stack.axis = .vertical
 		stack.distribution = .fillEqually
+		stack.spacing = 20
 		return stack
 	}()
+
+	let whaleImageLabel: UIView = {
+		let whaleImage = UIImageView(image: UIImage(named: "Whale.png"))
+		whaleImage.contentMode = .scaleAspectFit
+		return whaleImage
+	}()
+
 	let bubbleWhaleStatusLabel: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .center
 		label.text = ""
 		return label
 	}()
+
 	let bubbleWhaleActiveLabel: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .center
@@ -33,14 +43,6 @@ class BubbleWhaleRemoteViewController: UIViewController {
 		return button
 	}()
 
-	let offButton: UIButton = {
-		let button = UIButton()
-		button.setTitle("OFF", for: .normal)
-		button.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-		button.addTarget(self, action: #selector(pressedOff), for: .touchUpInside)
-		return button
-	}()
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setUpViews();
@@ -53,15 +55,16 @@ class BubbleWhaleRemoteViewController: UIViewController {
 		view.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
 		view.addSubview(mainStack)
 		mainStack.translatesAutoresizingMaskIntoConstraints = false
-		mainStack.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
-		mainStack.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
-		mainStack.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor).isActive = true
-		mainStack.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor).isActive = true
+		mainStack.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 16).isActive = true
+		mainStack.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -16).isActive = true
+		mainStack.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 16).isActive = true
+		mainStack.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -16).isActive = true
 
+		mainStack.addArrangedSubview(whaleImageLabel)
 		mainStack.addArrangedSubview(bubbleWhaleStatusLabel)
 		mainStack.addArrangedSubview(bubbleWhaleActiveLabel)
 		mainStack.addArrangedSubview(onButton)
-		mainStack.addArrangedSubview(offButton)
+
 	}
 
 	@objc
