@@ -8,15 +8,35 @@
  * Copyright Chris Dinh 2020
  */
 
-#include <AltSoftSerial.h>
+#include <SoftwareSerial.h>
 
-static AltSoftSerial btSerial;
+static SoftwareSerial btSerial(11, 10);
+
 
 bool lightOn = false;
 /* There is data waiting to be read from the HM-10 device. */
 static void HandleRxDataIndication(void)
 {
    char c = btSerial.read();
+
+   if (c == 'o') {
+    Serial.println("turning light on");
+    lightOn = true;
+    btSerial.write("WHALE-ON");
+  }
+  if (c == 'f') {
+    Serial.println("turning light off");
+    lightOn = false;
+    btSerial.write("WHALE-OFF");
+  }
+
+  if (c == 's') {  
+    if (lightOn == true) {
+       btSerial.write("WHALE-ON");
+    } else {
+      btSerial.write("WHALE-OFF");
+    }
+  } 
     
    /* Just echo the character for now. */
    Serial.write(c);
@@ -37,14 +57,6 @@ static void HandleTxDataIndication(void)
    }
 
    Serial.println("the input is: " + c);
-  if (c == 'o') {
-    Serial.println("turning light on");
-    lightOn = true;
-  }
-  if (c == 'f') {
-    Serial.println("turning light off");
-    lightOn = false;
-  }
 
    btSerial.write(c);
 }
