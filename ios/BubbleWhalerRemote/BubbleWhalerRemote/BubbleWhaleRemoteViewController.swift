@@ -32,14 +32,6 @@ class BubbleWhaleRemoteViewController: UIViewController {
 	var whaleBubbleState = WhaleBubbleState.unknown {
 		didSet {
 			switch whaleBubbleState {
-			case .idle:
-				bubbleWhaleActiveLabel.text = "The Whale is not making bubles."
-				onButton.setTitle("OFF", for: .normal)
-				onButton.backgroundColor = .mainButtonOff
-				UIView.animate(withDuration: 1.0, animations: {
-					self.whaleImageLabel.tintColor = .bubbleStateIdle
-					self.onButton.alpha = 1.0
-				})
 			case .makingBubbles:
 				bubbleWhaleActiveLabel.text = "The Whale is making bubles."
 				onButton.setTitle("ON", for: .normal)
@@ -48,6 +40,20 @@ class BubbleWhaleRemoteViewController: UIViewController {
 					self.whaleImageLabel.tintColor = .bubbleStateMakingBubbles
 					self.onButton.alpha = 1.0
 				})
+				UIView.animate(withDuration: 0.8, delay: 0, options: [.repeat, .autoreverse, .curveEaseInOut], animations: {
+					self.whaleImageLabel.transform = CGAffineTransform.init(translationX: 0.0, y: -18.0)
+
+				}, completion: nil)
+
+			case .idle:
+				bubbleWhaleActiveLabel.text = "The Whale is not making bubles."
+				onButton.setTitle("OFF", for: .normal)
+				onButton.backgroundColor = .mainButtonOff
+				UIView.animate(withDuration: 1.0, animations: {
+					self.whaleImageLabel.tintColor = .bubbleStateIdle
+					self.onButton.alpha = 1.0
+				})
+
 			case .unknown:
 				whaleImageLabel.tintColor = .bubbleStateUnknown
 				bubbleWhaleActiveLabel.text = "?"
@@ -141,11 +147,13 @@ class BubbleWhaleRemoteViewController: UIViewController {
 	}
 
 	public func pressedOn() {
-		//TODO: write this
+		let data = "o".data(using: .utf8)!
+		bluetoothSerial.sendDataToDevice(data)
 	}
 
 	public func pressedOff() {
-		//TODO: write this
+		let data = "f".data(using: .utf8)!
+		bluetoothSerial.sendDataToDevice(data) 
 	}
 }
 
@@ -184,7 +192,7 @@ extension BubbleWhaleRemoteViewController: BluetoothSerialDelegate {
 	}
 	func serialIsReady(_ peripheral: CBPeripheral){
 		whaleConnectedState = .connected
-		let data = "f".data(using: .utf8)!
+		let data = "s".data(using: .utf8)!
 		bluetoothSerial.sendDataToDevice(data)
 		print("serial is ready")
 	}
