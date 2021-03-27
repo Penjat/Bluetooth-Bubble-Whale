@@ -33,15 +33,19 @@ class BubbleWhaleRemoteViewController: UIViewController {
 		didSet {
 			switch whaleBubbleState {
 			case .idle:
-				whaleImageLabel.tintColor = .bubbleStateIdle
 				bubbleWhaleActiveLabel.text = "The Whale is not making bubles."
+				onButton.setTitle("OFF", for: .normal)
+				onButton.backgroundColor = .mainButtonOff
 				UIView.animate(withDuration: 1.0, animations: {
+					self.whaleImageLabel.tintColor = .bubbleStateIdle
 					self.onButton.alpha = 1.0
 				})
 			case .makingBubbles:
-				whaleImageLabel.tintColor = .bubbleStateMakingBubbles
 				bubbleWhaleActiveLabel.text = "The Whale is making bubles."
+				onButton.setTitle("ON", for: .normal)
+				onButton.backgroundColor = .mainButtonOn
 				UIView.animate(withDuration: 1.0, animations: {
+					self.whaleImageLabel.tintColor = .bubbleStateMakingBubbles
 					self.onButton.alpha = 1.0
 				})
 			case .unknown:
@@ -72,6 +76,8 @@ class BubbleWhaleRemoteViewController: UIViewController {
 		let label = UILabel()
 		label.textAlignment = .center
 		label.text = ""
+		label.numberOfLines = 0
+		label.font = .connectionStatus
 		return label
 	}()
 
@@ -79,6 +85,7 @@ class BubbleWhaleRemoteViewController: UIViewController {
 		let label = UILabel()
 		label.textAlignment = .center
 		label.text = ""
+		label.font = .bubbleStatus
 		return label
 	}()
 
@@ -90,9 +97,10 @@ class BubbleWhaleRemoteViewController: UIViewController {
 		button.addTarget(self, action: #selector(pressedButton), for: .touchUpInside)
 		button.layer.cornerRadius = 20
 		button.alpha = 0.0
+		button.titleLabel?.font = .mainButtonFont
 		return button
 	}()
-
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setUpViews();

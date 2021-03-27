@@ -16,6 +16,7 @@
 		0B68BD5B260C2BC7006F4262 /* BubbleWhalerRemoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68BD5A260C2BC7006F4262 /* BubbleWhalerRemoteUITests.swift */; };
 		0B97DA17260D901200B50C37 /* BluetoothSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97DA16260D901200B50C37 /* BluetoothSerial.swift */; };
 		0B97DA28260EA32D00B50C37 /* Color+CustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97DA27260EA32D00B50C37 /* Color+CustomStyle.swift */; };
+		0B97DA33260EBF2F00B50C37 /* UIFont+CustomStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B97DA32260EBF2F00B50C37 /* UIFont+CustomStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		0B68BD5C260C2BC7006F4262 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B97DA16260D901200B50C37 /* BluetoothSerial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothSerial.swift; sourceTree = "<group>"; };
 		0B97DA27260EA32D00B50C37 /* Color+CustomStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+CustomStyle.swift"; sourceTree = "<group>"; };
+		0B97DA32260EBF2F00B50C37 /* UIFont+CustomStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomStyle.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				0B68BD3C260C2BC6006F4262 /* BubbleWhaleRemoteViewController.swift */,
 				0B97DA16260D901200B50C37 /* BluetoothSerial.swift */,
 				0B97DA27260EA32D00B50C37 /* Color+CustomStyle.swift */,
+				0B97DA32260EBF2F00B50C37 /* UIFont+CustomStyle.swift */,
 				0B68BD41260C2BC7006F4262 /* Assets.xcassets */,
 				0B68BD43260C2BC7006F4262 /* LaunchScreen.storyboard */,
 				0B68BD46260C2BC7006F4262 /* Info.plist */,
@@ -265,6 +268,7 @@
 				0B97DA17260D901200B50C37 /* BluetoothSerial.swift in Sources */,
 				0B68BD3B260C2BC6006F4262 /* SceneDelegate.swift in Sources */,
 				0B97DA28260EA32D00B50C37 /* Color+CustomStyle.swift in Sources */,
+				0B97DA33260EBF2F00B50C37 /* UIFont+CustomStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

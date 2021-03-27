@@ -23,6 +23,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let nav = UINavigationController(rootViewController: controller!)
 		window?.rootViewController = nav
 		window?.makeKeyAndVisible()
+
+		for family: String in UIFont.familyNames {
+			print("\(family)")
+			for names: String in UIFont.fontNames(forFamilyName: family) {
+				print("== \(names)")
+			}
+		}
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {
