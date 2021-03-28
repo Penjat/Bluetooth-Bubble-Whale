@@ -1,5 +1,6 @@
 import UIKit
 import CoreBluetooth
+import Combine
 
 enum WhaleBubbleState {
 	case unknown, makingBubbles, idle
@@ -174,11 +175,15 @@ extension BubbleWhaleRemoteViewController: BluetoothSerialDelegate {
 			print("central.state is .poweredOn")
 			whaleConnectedState = .scanning
 			bluetoothSerial.startScan()
+		@unknown default:
+			fatalError()
 		}
 	}
 
 	func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?) {
-		whaleConnectedState = .notConnected
+		whaleBubbleState = .unknown
+		whaleConnectedState = .scanning
+		bluetoothSerial.startScan()
 	}
 
 	func serialDidDiscoverPeripheral(_ peripheral: CBPeripheral, RSSI: NSNumber?) {

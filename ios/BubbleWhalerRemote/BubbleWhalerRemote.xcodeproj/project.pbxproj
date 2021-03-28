@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B119AF9260FE36000B0881C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B119AF8260FE36000B0881C /* Assets.xcassets */; };
 		0B68BD39260C2BC6006F4262 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68BD38260C2BC6006F4262 /* AppDelegate.swift */; };
 		0B68BD3B260C2BC6006F4262 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68BD3A260C2BC6006F4262 /* SceneDelegate.swift */; };
 		0B68BD3D260C2BC6006F4262 /* BubbleWhaleRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68BD3C260C2BC6006F4262 /* BubbleWhaleRemoteViewController.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B119AF8260FE36000B0881C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../AppIcons/Assets.xcassets; sourceTree = "<group>"; };
 		0B68BD35260C2BC6006F4262 /* BubbleWhalerRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BubbleWhalerRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B68BD38260C2BC6006F4262 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B68BD3A260C2BC6006F4262 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				0B97DA27260EA32D00B50C37 /* Color+CustomStyle.swift */,
 				0B97DA32260EBF2F00B50C37 /* UIFont+CustomStyle.swift */,
 				0B68BD41260C2BC7006F4262 /* Assets.xcassets */,
+				0B119AF8260FE36000B0881C /* Assets.xcassets */,
 				0B68BD43260C2BC7006F4262 /* LaunchScreen.storyboard */,
 				0B68BD46260C2BC7006F4262 /* Info.plist */,
 			);
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B68BD45260C2BC7006F4262 /* LaunchScreen.storyboard in Resources */,
+				0B119AF9260FE36000B0881C /* Assets.xcassets in Resources */,
 				0B68BD42260C2BC7006F4262 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
