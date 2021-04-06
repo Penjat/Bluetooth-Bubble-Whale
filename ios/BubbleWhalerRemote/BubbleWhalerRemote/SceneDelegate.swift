@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-	var controller: BubbleWhaleRemoteViewController?
+	var controller: BubbleWhaleViewController?
 
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: windowScene)
-		controller = BubbleWhaleRemoteViewController()
+		controller = BubbleWhaleViewController()
 		let nav = UINavigationController(rootViewController: controller!)
 		window?.rootViewController = nav
 		window?.makeKeyAndVisible()
@@ -57,11 +57,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		for context in URLContexts {
 			if let host = context.url.host {
 				if host == "on" {
-					controller?.pressedOn()
+//					controller?.pressedOn()
 				}
 
 				if host == "off" {
-					controller?.pressedOff()
+//					controller?.pressedOff()
 				}
 			}
 		}
