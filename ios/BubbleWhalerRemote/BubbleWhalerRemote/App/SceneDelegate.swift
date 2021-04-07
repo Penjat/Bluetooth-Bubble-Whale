@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-	var controller: BubbleWhaleViewController?
+	var controller: UIViewController?
 
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -19,7 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: windowScene)
-		controller = BubbleWhaleViewController()
+//		controller = BubbleWhaleViewController()
+		let swiftUIView = RemoteSwiftUIView()
+		controller = UIHostingController(rootView: swiftUIView)
 		let nav = UINavigationController(rootViewController: controller!)
 		window?.rootViewController = nav
 		window?.makeKeyAndVisible()
