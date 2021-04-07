@@ -60,17 +60,17 @@ class BubbleWhaleViewController: UIViewController {
 			})
 		}.store(in: &cancelBag)
 
-//		viewModel.viewEffects.sink { viewEffect in
-//			switch viewEffect {
-//			case .onEffect:
-//				break
-////				UIView.animate(withDuration: 0.5, delay: 0.0, options: [.autoreverse], animations: {
-////					self.whaleImageLabel.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
-////				}, completion: { _ in
-////					self.whaleImageLabel.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
-////				})
-//			}
-//		}.store(in: &cancelBag)
+		viewModel.viewEffects.sink { viewEffect in
+			switch viewEffect {
+			case .onEffect:
+				break
+//				UIView.animate(withDuration: 0.5, delay: 0.0, options: [.autoreverse], animations: {
+//					self.whaleImageLabel.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+//				}, completion: { _ in
+//					self.whaleImageLabel.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+//				})
+			}
+		}.store(in: &cancelBag)
 		setUpViews()
 	}
 
