@@ -55,20 +55,17 @@ class BubbleWhaleViewController: UIViewController {
 			self.bubbleStatusLabel.text = viewState.bubbleStatusText
 			self.connectionStatusLabel.text = viewState.whaleStatusText
 			self.onButton.setTitle(viewState.buttonText, for: .normal)
-			UIView.animate(withDuration: 1.5, animations: {
-				self.onButton.alpha = viewState.showButton ? 1 : 0
-			})
+//			
 		}.store(in: &cancelBag)
 
 		viewModel.viewEffects.sink { viewEffect in
 			switch viewEffect {
 			case .onEffect:
-				break
-//				UIView.animate(withDuration: 0.5, delay: 0.0, options: [.autoreverse], animations: {
-//					self.whaleImageLabel.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
-//				}, completion: { _ in
-//					self.whaleImageLabel.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
-//				})
+				UIView.animate(withDuration: 0.5, delay: 0.0, options: [.autoreverse], animations: {
+					self.whaleImageLabel.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+				}, completion: { _ in
+					self.whaleImageLabel.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+				})
 			}
 		}.store(in: &cancelBag)
 		setUpViews()
