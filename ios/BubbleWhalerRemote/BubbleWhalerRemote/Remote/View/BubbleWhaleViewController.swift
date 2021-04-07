@@ -2,9 +2,17 @@ import UIKit
 import Combine
 
 class BubbleWhaleViewController: UIViewController {
+	init(viewModel: BubbleWhaleViewModel) {
+		self.viewModel = viewModel
+		super.init(nibName: nil, bundle: nil)
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented on purpose.  This is a no stroyboard project.")
+	}
 
 	private var cancelBag = Set<AnyCancellable>()
-	let viewModel = BubbleWhaleViewModel()
+	let viewModel: BubbleWhaleViewModel
 
 	lazy var mainStack: UIStackView = {
 		let stack = UIStackView()
@@ -55,7 +63,9 @@ class BubbleWhaleViewController: UIViewController {
 			self.bubbleStatusLabel.text = viewState.bubbleStatusText
 			self.connectionStatusLabel.text = viewState.whaleStatusText
 			self.onButton.setTitle(viewState.buttonText, for: .normal)
-//			
+			UIView.animate(withDuration: 1.5, animations: {
+				self.onButton.alpha = viewState.showButton ? 1 : 0
+			})
 		}.store(in: &cancelBag)
 
 		viewModel.viewEffects.sink { viewEffect in

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B119AF9260FE36000B0881C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B119AF8260FE36000B0881C /* Assets.xcassets */; };
 		0B36B5E2261E0DCA00B0C195 /* Publisher+withLatestFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B36B5E1261E0DCA00B0C195 /* Publisher+withLatestFrom.swift */; };
+		0B36B602261E3BE100B0C195 /* RemoteSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B36B601261E3BE100B0C195 /* RemoteSwiftUIView.swift */; };
+		0B36B613261E5F1800B0C195 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B36B612261E5F1800B0C195 /* TableViewController.swift */; };
 		0B68BD39260C2BC6006F4262 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68BD38260C2BC6006F4262 /* AppDelegate.swift */; };
 		0B68BD3B260C2BC6006F4262 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B68BD3A260C2BC6006F4262 /* SceneDelegate.swift */; };
 		0B68BD42260C2BC7006F4262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B68BD41260C2BC7006F4262 /* Assets.xcassets */; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		0B119AF8260FE36000B0881C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../AppIcons/Assets.xcassets; sourceTree = "<group>"; };
 		0B36B5E1261E0DCA00B0C195 /* Publisher+withLatestFrom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+withLatestFrom.swift"; sourceTree = "<group>"; };
+		0B36B601261E3BE100B0C195 /* RemoteSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteSwiftUIView.swift; sourceTree = "<group>"; };
+		0B36B612261E5F1800B0C195 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		0B68BD35260C2BC6006F4262 /* BubbleWhalerRemote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BubbleWhalerRemote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B68BD38260C2BC6006F4262 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B68BD3A260C2BC6006F4262 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +132,14 @@
 			path = Remote;
 			sourceTree = "<group>";
 		};
+		0B36B609261E5D9F00B0C195 /* TitleScreen */ = {
+			isa = PBXGroup;
+			children = (
+				0B36B612261E5F1800B0C195 /* TableViewController.swift */,
+			);
+			path = TitleScreen;
+			sourceTree = "<group>";
+		};
 		0B68BD2C260C2BC6006F4262 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				0B36B5EA261E1D2000B0C195 /* App */,
+				0B36B609261E5D9F00B0C195 /* TitleScreen */,
 				0B36B5EB261E1D5E00B0C195 /* Remote */,
 				0B36B5E9261E1CF300B0C195 /* Bluetooth */,
 				0B36B5E0261E0DB100B0C195 /* Extentions */,
@@ -201,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				0BF023EE261CBFEC003C1F73 /* BubbleWhaleViewController.swift */,
+				0B36B601261E3BE100B0C195 /* RemoteSwiftUIView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -350,9 +364,11 @@
 				0B68BD3B260C2BC6006F4262 /* SceneDelegate.swift in Sources */,
 				0BF0240D261D1DCF003C1F73 /* BluetoothInteractor.swift in Sources */,
 				0B97DA28260EA32D00B50C37 /* Color+CustomStyle.swift in Sources */,
+				0B36B613261E5F1800B0C195 /* TableViewController.swift in Sources */,
 				0BF023FC261D077C003C1F73 /* BubbleWhale.swift in Sources */,
 				0BF023F4261CBFF3003C1F73 /* BubbleWhaleViewModel.swift in Sources */,
 				0B97DA33260EBF2F00B50C37 /* UIFont+CustomStyle.swift in Sources */,
+				0B36B602261E3BE100B0C195 /* RemoteSwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
