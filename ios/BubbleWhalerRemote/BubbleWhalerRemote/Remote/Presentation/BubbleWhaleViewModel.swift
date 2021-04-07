@@ -33,42 +33,36 @@ struct BubbleWhaleViewState {
 }
 
 enum BubbleWhaleViewEffect {
-	case someEffect
+	case onEffect
 }
 
 /// View Model
 class BubbleWhaleViewModel {
 	// TODO: use dependency injection
-	let bluetoothInteractor: BluetoothInteractor;
+	let bluetoothInteractor: BluetoothInteractor
+	var bubbleWhale = BubbleWhale(whaleState: .notConnected)
 	private var cancelBag = Set<AnyCancellable>()
 
 	/// - Input
 	let intents = PassthroughSubject<BubbleWhaleIntent, Never>()
 
 	public func processIntent(intent: BubbleWhaleIntent) {
+		print("recieved intent")
 		intents.send(intent)
 	}
 	/// - Side effects
-	lazy var results = intents
-		.combineLatest(bluetoothInteractor.output.compactMap({ (whaleState) -> BubbleStatus? in
-		switch whaleState {
-		case .connected(let bubbleState):
-			return bubbleState
-			default:
-				return nil
-		}
-	})).flatMap { (intent, bubbleState) -> Publishers.Sequence<[BubbleWhaleViewResult], Never> in
+	lazy var results = intents.flatMap { intent -> Publishers.Sequence<[BubbleWhaleViewResult], Never> in
 		switch intent {
 		case .whaleStateChanged(let whaleState):
-			print("whale state changed")
+			print("whale state changed \(whaleState)")
 			return self.processWhaleStateChange(whaleState)
 		case .pressedButton:
-			return self.processPressedButton(bubbleState)
+			return self.processPressedButton(self.bubbleWhale.bubbleStatus)
 		}
 	}
 
-	func processPressedButton(_ bubbleState: BubbleStatus) -> Publishers.Sequence<[BubbleWhaleViewResult], Never> {
-		switch bubbleState {
+	func processPressedButton(_ bubbleStatus: BubbleStatus) -> Publishers.Sequence<[BubbleWhaleViewResult], Never> {
+		switch bubbleStatus {
 		case .makingBubbles:
 			bluetoothInteractor.turnOffBubbles()
 			break;
@@ -84,12 +78,16 @@ class BubbleWhaleViewModel {
 	func processWhaleStateChange(_ whaleState: WhaleState) -> Publishers.Sequence<[BubbleWhaleViewResult], Never> {
 		switch whaleState {
 		case .scanning:
+			self.bubbleWhale.whaleState = .notConnected
 			return [BubbleWhaleViewResult.startedScan].publisher
 		case .detected:
+			self.bubbleWhale.whaleState = .detected
 			return [BubbleWhaleViewResult.detected].publisher
 		case .connected(let bubbleState):
+			self.bubbleWhale.whaleState = .connected(bubbleState)
 			return processBubbleStateChanged(bubbleState)
 		case .notConnected:
+			self.bubbleWhale.whaleState = .notConnected
 			return [BubbleWhaleViewResult.notConnected].publisher
 		}
 	}
@@ -149,15 +147,20 @@ class BubbleWhaleViewModel {
 		}
 	}
 
-	lazy var viewEffects = results.compactMap { (BubbleWhaleViewResult) -> BubbleWhaleViewEffect? in
-		return nil
-	}
+//	lazy var viewEffects = results.compactMap { result -> BubbleWhaleViewEffect? in
+//		switch result {
+//		case .makingBubbles:
+//			return .onEffect
+//		default:
+//			return nil
+//		}
+//	}
 
 	public init() {
 		self.bluetoothInteractor = BluetoothInteractor()
 		print("creating view model")
 		bluetoothInteractor.output.sink { (whaleState) in
-			print("recieved state change")
+			print("recieved state change \(whaleState)")
 			self.processIntent(intent: .whaleStateChanged(whaleState))
 		}.store(in: &cancelBag)
 	}

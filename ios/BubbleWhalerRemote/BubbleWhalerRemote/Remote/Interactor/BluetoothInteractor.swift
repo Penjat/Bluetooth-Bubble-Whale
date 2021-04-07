@@ -85,11 +85,13 @@ class BluetoothInteractor: BluetoothSerialDelegate {
 	}
 
 	public func turnOnBubbles() {
+		print("turning on bubbles")
 		let data = "o".data(using: .utf8)!
 		bluetoothSerial.sendDataToDevice(data)
 	}
 
 	public func turnOffBubbles() {
+		print("turning off bubbles")
 		let data = "f".data(using: .utf8)!
 		bluetoothSerial.sendDataToDevice(data)
 	}
