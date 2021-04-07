@@ -59,7 +59,7 @@ class BubbleWhaleViewModel {
 		case .pressedButton:
 			return self.processPressedButton(self.bubbleWhale.bubbleStatus)
 		}
-	}
+	}.share()
 
 	func processPressedButton(_ bubbleStatus: BubbleStatus) -> Publishers.Sequence<[BubbleWhaleViewResult], Never> {
 		switch bubbleStatus {
@@ -147,14 +147,14 @@ class BubbleWhaleViewModel {
 		}
 	}
 
-//	lazy var viewEffects = results.compactMap { result -> BubbleWhaleViewEffect? in
-//		switch result {
-//		case .makingBubbles:
-//			return .onEffect
-//		default:
-//			return nil
-//		}
-//	}
+	lazy var viewEffects = results.compactMap { result -> BubbleWhaleViewEffect? in
+		switch result {
+		case .makingBubbles:
+			return .onEffect
+		default:
+			return nil
+		}
+	}
 
 	public init() {
 		self.bluetoothInteractor = BluetoothInteractor()
