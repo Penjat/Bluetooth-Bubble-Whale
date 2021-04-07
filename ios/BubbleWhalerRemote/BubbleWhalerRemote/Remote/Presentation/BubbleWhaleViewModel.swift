@@ -37,7 +37,7 @@ enum BubbleWhaleViewEffect {
 }
 
 /// View Model
-class BubbleWhaleViewModel {
+class BubbleWhaleViewModel: ObservableObject {
 	// TODO: use dependency injection
 	let bluetoothInteractor: BluetoothInteractor
 	var bubbleWhale: WhaleState = .notConnected

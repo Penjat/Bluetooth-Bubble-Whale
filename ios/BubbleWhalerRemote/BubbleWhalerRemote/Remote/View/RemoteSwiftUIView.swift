@@ -1,15 +1,24 @@
 import SwiftUI
+import Combine
 
 struct RemoteSwiftUIView: View {
+	let viewModel: BubbleWhaleViewModel
+	@ObservedObject private var model: RemoteSwiftUIModel
+
+	init(viewModel: BubbleWhaleViewModel = BubbleWhaleViewModel()) {
+		self.viewModel = viewModel
+		self.model = RemoteSwiftUIModel(viewModel: self.viewModel)
+	}
+
     var body: some View {
 		VStack(alignment: .center, spacing: 20) {
-			Text("Bubble Whale Status")
+			Text(model.whaleStatusText)
 			Spacer()
 			Image("Whale")
-			Text("Bubble Status")
+			Text(model.bubbleStatusText)
 			Spacer()
-			Button("ON") {
-				print("Button tapped!")
+			Button(model.buttonText) {
+				viewModel.processIntent(intent: .pressedButton)
 			}.padding(32)
 			.border(Color.black, width: 2)
 
@@ -21,4 +30,19 @@ struct RemoteSwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
         RemoteSwiftUIView()
     }
+}
+
+class RemoteSwiftUIModel: ObservableObject {
+	private var cancelBag = Set<AnyCancellable>()
+	@Published var bubbleStatusText = ""
+	@Published var whaleStatusText = ""
+	@Published var buttonText = ""
+
+	init(viewModel: BubbleWhaleViewModel) {
+		viewModel.viewState.sink { (viewState) in
+			self.bubbleStatusText = viewState.bubbleStatusText
+			self.whaleStatusText = viewState.whaleStatusText
+			self.buttonText = viewState.buttonText
+		}.store(in: &cancelBag)
+	}
 }

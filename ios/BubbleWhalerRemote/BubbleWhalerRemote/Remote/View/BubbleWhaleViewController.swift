@@ -4,6 +4,7 @@ import Combine
 class BubbleWhaleViewController: UIViewController {
 
 	private var cancelBag = Set<AnyCancellable>()
+	//TODO: Inject this
 	let viewModel = BubbleWhaleViewModel()
 
 	lazy var mainStack: UIStackView = {
