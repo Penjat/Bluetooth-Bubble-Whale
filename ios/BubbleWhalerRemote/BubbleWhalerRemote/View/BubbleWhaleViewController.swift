@@ -2,8 +2,9 @@ import UIKit
 import Combine
 
 class BubbleWhaleViewController: UIViewController {
-	let viewModel = BubbleWhaleViewModel()
+
 	private var cancelBag = Set<AnyCancellable>()
+	let viewModel = BubbleWhaleViewModel()
 
 	lazy var mainStack: UIStackView = {
 		let stack = UIStackView()
@@ -19,7 +20,7 @@ class BubbleWhaleViewController: UIViewController {
 		return whaleImage
 	}()
 
-	let bubbleWhaleStatusLabel: UILabel = {
+	let connectionStatusLabel: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .center
 		label.text = ""
@@ -28,7 +29,7 @@ class BubbleWhaleViewController: UIViewController {
 		return label
 	}()
 
-	let bubbleWhaleActiveLabel: UILabel = {
+	let bubbleStatusLabel: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .center
 		label.text = ""
@@ -50,11 +51,19 @@ class BubbleWhaleViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		let _ = viewModel.viewState.sink { (viewState) in
-			
+		viewModel.viewState.sink { (viewState) in
+			self.bubbleStatusLabel.text = viewState.bubbleStatusText
+			self.connectionStatusLabel.text = viewState.whaleStatusText
+			self.onButton.setTitle(viewState.buttonText, for: .normal)
+			UIView.animate(withDuration: 1.5, animations: {
+				self.onButton.alpha = viewState.showButton ? 1 : 0
+			})
 		}.store(in: &cancelBag)
 		setUpViews()
-		viewModel.processIntent(intent: .startedUp)
+	}
+
+	override func viewDidDisappear(_ animated: Bool) {
+		cancelBag.removeAll()
 	}
 
 	public func setUpViews() {
@@ -66,15 +75,14 @@ class BubbleWhaleViewController: UIViewController {
 		mainStack.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 16).isActive = true
 		mainStack.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -16).isActive = true
 
-		mainStack.addArrangedSubview(bubbleWhaleStatusLabel)
+		mainStack.addArrangedSubview(connectionStatusLabel)
 		mainStack.addArrangedSubview(whaleImageLabel)
-		mainStack.addArrangedSubview(bubbleWhaleActiveLabel)
+		mainStack.addArrangedSubview(bubbleStatusLabel)
 		mainStack.addArrangedSubview(onButton)
-
 	}
 
 	@objc
 	public func pressedButton() {
-//		viewModel.processIntent(intent: )
+		viewModel.processIntent(intent: .pressedButton)
 	}
 }

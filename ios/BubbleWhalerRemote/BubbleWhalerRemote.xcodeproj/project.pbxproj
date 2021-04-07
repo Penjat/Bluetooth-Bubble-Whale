@@ -21,7 +21,6 @@
 		0BF023EF261CBFEC003C1F73 /* BubbleWhaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF023EE261CBFEC003C1F73 /* BubbleWhaleViewController.swift */; };
 		0BF023F4261CBFF3003C1F73 /* BubbleWhaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF023F3261CBFF2003C1F73 /* BubbleWhaleViewModel.swift */; };
 		0BF023FC261D077C003C1F73 /* BubbleWhale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF023FB261D077C003C1F73 /* BubbleWhale.swift */; };
-		0BF02408261D14EA003C1F73 /* test in Resources */ = {isa = PBXBuildFile; fileRef = 0BF02407261D14EA003C1F73 /* test */; };
 		0BF0240D261D1DCF003C1F73 /* BluetoothInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF0240C261D1DCF003C1F73 /* BluetoothInteractor.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		0BF023EE261CBFEC003C1F73 /* BubbleWhaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleWhaleViewController.swift; sourceTree = "<group>"; };
 		0BF023F3261CBFF2003C1F73 /* BubbleWhaleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleWhaleViewModel.swift; sourceTree = "<group>"; };
 		0BF023FB261D077C003C1F73 /* BubbleWhale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleWhale.swift; sourceTree = "<group>"; };
-		0BF02407261D14EA003C1F73 /* test */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test; sourceTree = "<group>"; };
 		0BF0240C261D1DCF003C1F73 /* BluetoothInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,7 +123,6 @@
 				0BF023EB261CBFB5003C1F73 /* Domain */,
 				0B97DA27260EA32D00B50C37 /* Color+CustomStyle.swift */,
 				0B97DA32260EBF2F00B50C37 /* UIFont+CustomStyle.swift */,
-				0BF02407261D14EA003C1F73 /* test */,
 				0B68BD41260C2BC7006F4262 /* Assets.xcassets */,
 				0B119AF8260FE36000B0881C /* Assets.xcassets */,
 				0B68BD43260C2BC7006F4262 /* LaunchScreen.storyboard */,
@@ -287,7 +284,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BF02408261D14EA003C1F73 /* test in Resources */,
 				0B68BD45260C2BC7006F4262 /* LaunchScreen.storyboard in Resources */,
 				0B119AF9260FE36000B0881C /* Assets.xcassets in Resources */,
 				0B68BD42260C2BC7006F4262 /* Assets.xcassets in Resources */,

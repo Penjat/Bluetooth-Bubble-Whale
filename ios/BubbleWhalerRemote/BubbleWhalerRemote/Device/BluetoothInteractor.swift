@@ -20,6 +20,10 @@ class BluetoothInteractor: BluetoothSerialDelegate {
 	var bubbleWhalePeripheral: CBPeripheral!
 	var myChar: CBCharacteristic?
 	public let output = PassthroughSubject<WhaleState, Never>()
+
+	init() {
+		bluetoothSerial = BluetoothSerial(delegate: self)
+	}
 	
 	func serialDidChangeState() {
 		switch bluetoothSerial.centralManager.state {
@@ -35,8 +39,8 @@ class BluetoothInteractor: BluetoothSerialDelegate {
 			print("central.state is .poweredOff")
 		case .poweredOn:
 			print("central.state is .poweredOn")
-			bluetoothSerial.startScan()
 			output.send(.scanning)
+			bluetoothSerial.startScan()
 		@unknown default:
 			fatalError()
 		}
@@ -78,5 +82,21 @@ class BluetoothInteractor: BluetoothSerialDelegate {
 		if message == "WHALE-OFF" {
 			output.send(.connected(.notMakingBubbles))
 		}
+	}
+
+	public func turnOnBubbles() {
+		let data = "o".data(using: .utf8)!
+		bluetoothSerial.sendDataToDevice(data)
+	}
+
+	public func turnOffBubbles() {
+		let data = "f".data(using: .utf8)!
+		bluetoothSerial.sendDataToDevice(data)
+	}
+
+	public func getBubbleState() {
+		//TODO: broadcast this over bluetooth instead
+		let data = "s".data(using: .utf8)!
+		bluetoothSerial.sendDataToDevice(data)
 	}
 }
