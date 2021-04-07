@@ -2,19 +2,6 @@ import Foundation
 import CoreBluetooth
 import Combine
 
-enum WhaleState {
-	case scanning
-	case detected
-	case connected(BubbleStatus)
-	case notConnected
-}
-
-enum BubbleStatus {
-	case unknown
-	case makingBubbles
-	case notMakingBubbles
-}
-
 class BluetoothInteractor: BluetoothSerialDelegate {
 	var bluetoothSerial: BluetoothSerial!
 	var bubbleWhalePeripheral: CBPeripheral!

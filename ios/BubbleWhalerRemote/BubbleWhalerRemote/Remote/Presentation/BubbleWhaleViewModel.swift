@@ -40,7 +40,7 @@ enum BubbleWhaleViewEffect {
 class BubbleWhaleViewModel {
 	// TODO: use dependency injection
 	let bluetoothInteractor: BluetoothInteractor
-	var bubbleWhale = BubbleWhale(whaleState: .notConnected)
+	var bubbleWhale: WhaleState = .notConnected
 	private var cancelBag = Set<AnyCancellable>()
 
 	/// - Input
@@ -78,16 +78,16 @@ class BubbleWhaleViewModel {
 	func processWhaleStateChange(_ whaleState: WhaleState) -> Publishers.Sequence<[BubbleWhaleViewResult], Never> {
 		switch whaleState {
 		case .scanning:
-			self.bubbleWhale.whaleState = .notConnected
+			self.bubbleWhale = .notConnected
 			return [BubbleWhaleViewResult.startedScan].publisher
 		case .detected:
-			self.bubbleWhale.whaleState = .detected
+			self.bubbleWhale = .detected
 			return [BubbleWhaleViewResult.detected].publisher
 		case .connected(let bubbleState):
-			self.bubbleWhale.whaleState = .connected(bubbleState)
+			self.bubbleWhale = .connected(bubbleState)
 			return processBubbleStateChanged(bubbleState)
 		case .notConnected:
-			self.bubbleWhale.whaleState = .notConnected
+			self.bubbleWhale = .notConnected
 			return [BubbleWhaleViewResult.notConnected].publisher
 		}
 	}
