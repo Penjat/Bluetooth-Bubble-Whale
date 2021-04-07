@@ -10,26 +10,27 @@ struct RemoteSwiftUIView: View {
 		self.model = RemoteSwiftUIModel(viewModel: self.viewModel)
 	}
 
-    var body: some View {
-		VStack(alignment: .center, spacing: 20) {
-			Text(model.whaleStatusText)
-			Spacer()
-			Image("Whale")
-			Text(model.bubbleStatusText)
-			Spacer()
-			Button(model.buttonText) {
-				viewModel.processIntent(intent: .pressedButton)
-			}.padding(32)
-			.border(Color.black, width: 2)
-
-		}.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
+	var body: some View {
+		Color(.appBackground).ignoresSafeArea()
+			.overlay(
+			VStack(alignment: .center, spacing: 20) {
+				Text(model.whaleStatusText).foregroundColor(Color(.white)).font(Font(UIFont.connectionStatus)).padding(32)
+				Spacer()
+				Image("Whale").foregroundColor(Color(.bubbleStateIdle))
+				Text(model.bubbleStatusText).font(Font(UIFont.bubbleStatus))
+				Spacer()
+				Button(model.buttonText) {
+					viewModel.processIntent(intent: .pressedButton)
+				}.foregroundColor(Color(.mainButtonOff)).padding(32)
+				.border(Color(.bubbleStateIdle), width: 4).font(Font(UIFont.mainButtonFont))
+			})
 	}
 }
 
 struct RemoteSwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        RemoteSwiftUIView()
-    }
+	static var previews: some View {
+		RemoteSwiftUIView()
+	}
 }
 
 class RemoteSwiftUIModel: ObservableObject {

@@ -21,8 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		window = UIWindow(windowScene: windowScene)
 //		controller = BubbleWhaleViewController()
-		let swiftUIView = RemoteSwiftUIView()
-		controller = UIHostingController(rootView: swiftUIView)
+//		let swiftUIView = RemoteSwiftUIView()
+//		controller = UIHostingController(rootView: swiftUIView)
+		controller = TableViewController()
 		let nav = UINavigationController(rootViewController: controller!)
 		window?.rootViewController = nav
 		window?.makeKeyAndVisible()
